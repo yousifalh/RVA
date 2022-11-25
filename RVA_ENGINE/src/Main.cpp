@@ -1,25 +1,34 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "data/WindowData.h"
+#include "Meshes/WorldSpace.h"
+#include "Meshes/Cube.h"
 
 #include <iostream>
-
+#include <memory>
 
 int main()
 {
 	rva::Window::initContext();
-
 	rva::Window window{ rva::windowData };
 
-	//window.setup();
+	std::shared_ptr<rva::WorldSpace> ws = std::make_shared<rva::WorldSpace>();
 
 	rva::Renderer renderer{};
+	renderer.bindWSContext(ws);
 
-	//Basically the structure of the objects (a world space?)
-	/*rva::WorldSpace worldSpace{};
+    
+	ws->addCube();
 
-	renderer.bind(&worldSpace);*/
+	while (!window.shouldClose())
+	{
+        renderer.uploadWSState();
 
+		renderer.renderFrame();
+
+	}
+
+	
 
 
 }

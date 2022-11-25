@@ -22,7 +22,10 @@ namespace rva
 		Window& operator=(Window&) = delete;
 		Window(WindowData data);
 
-
+		void processEvents();
+		
+		bool shouldClose();
+		void setShouldClose(bool val);
 
 	};
 

@@ -39,8 +39,22 @@ namespace rva
 		glfwMakeContextCurrent(m_window);
 		// Multiple window stuff would need a window manager thta accesses func above...
 
+	}
 
+	void Window::processEvents()
+	{
+		glfwSwapBuffers(m_window);
+		glfwPollEvents();
+	}
 
+	bool Window::shouldClose()
+	{
+		return glfwWindowShouldClose(m_window);
+	}
+
+	void Window::setShouldClose(bool val)
+	{
+		glfwSetWindowShouldClose(m_window, val);
 	}
 
 }
