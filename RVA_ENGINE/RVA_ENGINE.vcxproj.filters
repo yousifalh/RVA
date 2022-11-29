@@ -15,28 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp">
+    <ClCompile Include="include\glm\detail\glm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\glm\detail\glm.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shader.cpp">
+    <ClCompile Include="src\Instance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Buffers\BufferManager.cpp">
+    <ClCompile Include="src\meshes\Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Buffers\VertexBuffer.cpp">
+    <ClCompile Include="src\meshes\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Renderer.cpp">
+    <ClCompile Include="src\shader\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Meshes\WorldSpace.cpp">
+    <ClCompile Include="src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -905,37 +905,28 @@
     <ClInclude Include="src\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\data\WindowData.h">
+    <ClInclude Include="src\Instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Buffers\BufferManager.h">
+    <ClInclude Include="src\meshes\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shader.h">
+    <ClInclude Include="src\meshes\data\Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\data\ShaderData.h">
+    <ClInclude Include="src\meshes\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Meshes\Mesh.h">
+    <ClInclude Include="src\meshes\data\NormalisedCubeData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Meshes\Cube.h">
+    <ClInclude Include="src\shader\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core.h">
+    <ClInclude Include="src\user\Controls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Buffers\VertexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Meshes\WorldSpace.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Buffers\Elements.h">
+    <ClInclude Include="src\Macro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

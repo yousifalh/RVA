@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RVA_ENGINE", "RVA_ENGINE\RVA_ENGINE.vcxproj", "{318A2C47-41F8-40ED-8006-F1C594329B78}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{318A2C47-41F8-40ED-8006-F1C594329B78}.Release|x64.Build.0 = Release|x64
 		{318A2C47-41F8-40ED-8006-F1C594329B78}.Release|x86.ActiveCfg = Release|Win32
 		{318A2C47-41F8-40ED-8006-F1C594329B78}.Release|x86.Build.0 = Release|Win32
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Debug|x64.ActiveCfg = Debug|x64
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Debug|x64.Build.0 = Debug|x64
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Debug|x86.ActiveCfg = Debug|Win32
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Debug|x86.Build.0 = Debug|Win32
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Release|x64.ActiveCfg = Release|x64
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Release|x64.Build.0 = Release|x64
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Release|x86.ActiveCfg = Release|Win32
+		{303AE208-AAC6-45EE-A1F5-B34B1DF7D892}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

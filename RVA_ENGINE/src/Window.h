@@ -1,32 +1,32 @@
 #pragma once
 
-#include "data/WindowData.h"
+#include <memory>
 
-class GLFWwindow;
+struct GLFWwindow;
 
 namespace rva
 {
-
 	class Window
 	{
 	private:
 		static bool s_instance;
-
-		GLFWwindow* m_window;
-
+		
+		GLFWwindow* m_glfwWindow;
 
 	public:
 		static void initContext();
+		static void terminateContext();
 
-		Window() = delete;
+		Window(Window&) = delete;
+		Window(Window&&) = delete;
 		Window& operator=(Window&) = delete;
-		Window(WindowData data);
 
-		void processEvents();
-		
-		bool shouldClose();
-		void setShouldClose(bool val);
+		Window();
 
+		bool windowShouldClose();
+		void setWindowShouldClose(bool set);
+
+		void swapBuffers();
+		void processPollEvents();
 	};
-
 }

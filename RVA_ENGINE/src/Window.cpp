@@ -1,60 +1,76 @@
+#include "Macro.h"
 #include "Window.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-
+#include "user/Controls.h"
 
 namespace rva
 {
+	bool Window::s_instance;
+	
 
 	void Window::initContext()
 	{
-		if (s_instance)
-		{
-			std::cout << "Already initialised window context!" << std::endl;
-			//assert...
-		}
+		RVA_LOG("Initialising window context!");
 
 		glfwInit();
-		glfwWindowHint(GLFW_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_API, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	}
 
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	void Window::terminateContext()
+	{
+		glfwTerminate();
+	}
+
+	Window::Window()
+	{
+		if (s_instance)
 		{
-			std::cout << "Failed to load glad!" << std::endl;
-			//assert...
+			//Destroy window?
+			RVA_ASSERT(0, "There already exists a window instance! Window is a singleton!")
+		}
+		else
+		{
+			std::cout << "Creating window?" << std::endl;
+			s_instance = true;
+			m_glfwWindow = glfwCreateWindow(1200, 800, "RVA-ENGINE", NULL, NULL);
+
+			if (m_glfwWindow == NULL)
+			{
+				std::cout << "Failed to create window!" << std::endl;
+			}
 		}
 
-		s_instance = true;
-	}
+		glfwMakeContextCurrent(m_glfwWindow);
+		glfwSetFramebufferSizeCallback(m_glfwWindow, frameBufferSizeCallback);
 
-
-	Window::Window(WindowData wd)
-	{
-		m_window = glfwCreateWindow(wd.width, wd.height, wd.name, nullptr, nullptr);
-
-		glfwMakeContextCurrent(m_window);
-		// Multiple window stuff would need a window manager thta accesses func above...
+		RVA_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Failed to load glad!")
 
 	}
 
-	void Window::processEvents()
+	void Window::swapBuffers()
 	{
-		glfwSwapBuffers(m_window);
+		glfwSwapBuffers(m_glfwWindow);
+	}
+
+	bool Window::windowShouldClose()
+	{
+		return glfwWindowShouldClose(m_glfwWindow);
+	}
+
+	void Window::setWindowShouldClose(bool set)
+	{
+		glfwSetWindowShouldClose(m_glfwWindow, set);
+	}
+
+	void Window::processPollEvents()
+	{
 		glfwPollEvents();
-	}
-
-	bool Window::shouldClose()
-	{
-		return glfwWindowShouldClose(m_window);
-	}
-
-	void Window::setShouldClose(bool val)
-	{
-		glfwSetWindowShouldClose(m_window, val);
+		//Process poll
 	}
 
 }
