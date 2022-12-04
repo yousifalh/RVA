@@ -108,5 +108,10 @@ namespace rva
 	{
 		glUseProgram(m_ID);
 	}
+
+	void Shader::setMat4Uniform(const char* name, const glm::mat4& mat)
+	{
+		glUniformMatrix4fv(glGetUniformLocation(m_ID, name), 1, GL_FALSE, &mat[0][0]);
+	}
 }
 

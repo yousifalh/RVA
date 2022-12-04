@@ -10,7 +10,7 @@ namespace rva
 	{
 	private:
 		unsigned int m_numVertices;
-		float* m_verticiesPtr;
+		Vertex* m_verticiesPtr;
 
 	public:
 		Mesh(Mesh&) = delete;
@@ -18,8 +18,9 @@ namespace rva
 		Mesh& operator=(Mesh&) = delete;
 
 		//Mesh(std::vector<Vertex> verticies);
-		Mesh(float* verticies, unsigned int num);
+		Mesh(Vertex* verticies, unsigned int num);
 
-		float* getPtr() { return m_verticiesPtr; }
+		//Following function using friend function with buffer objs?
+		Vertex* getPtr() { return m_verticiesPtr; }
 	};
 }

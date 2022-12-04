@@ -26,4 +26,3 @@
 		std::exit(-1);\
 	}
 #define RVA_RUNTIME_ERR(message) ( throw std::runtime_error(message) )
-#define RVA_RUNTIME_ERR(a, message) (if (!a) { throw std::runtime_error(message); })

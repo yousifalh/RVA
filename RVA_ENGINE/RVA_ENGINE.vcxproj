@@ -146,6 +146,7 @@
     <ClCompile Include="src\meshes\Cube.cpp" />
     <ClCompile Include="src\meshes\Mesh.cpp" />
     <ClCompile Include="src\shader\Shader.cpp" />
+    <ClCompile Include="src\user\Camera.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -438,14 +439,18 @@
     <ClInclude Include="include\glm\vec4.hpp" />
     <ClInclude Include="include\glm\vector_relational.hpp" />
     <ClInclude Include="include\KHR\khrplatform.h" />
+    <ClInclude Include="src\buffers\Buffer.h" />
     <ClInclude Include="src\Instance.h" />
     <ClInclude Include="src\Macro.h" />
     <ClInclude Include="src\meshes\Cube.h" />
     <ClInclude Include="src\meshes\data\NormalisedCubeData.h" />
     <ClInclude Include="src\meshes\data\Vertex.h" />
     <ClInclude Include="src\meshes\Mesh.h" />
+    <ClInclude Include="src\meshes\MeshManager.h" />
     <ClInclude Include="src\shader\Shader.h" />
+    <ClInclude Include="src\user\Camera.h" />
     <ClInclude Include="src\user\Controls.h" />
+    <ClInclude Include="src\user\Settings.h" />
     <ClInclude Include="src\Window.h" />
   </ItemGroup>
   <ItemGroup>

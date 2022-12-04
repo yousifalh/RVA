@@ -25,8 +25,8 @@ namespace rva
 
 	struct Vertex
 	{
-		VertexData v;
-		ColourData c;
+		VertexData vert;
+		ColourData col;
 
 		friend std::ostream& operator<<(std::ostream& out, const Vertex& vert);
 	};
@@ -39,10 +39,10 @@ namespace rva
 	};
 
 	
-	static std::ostream& operator<<(std::ostream& out, const Vertex& vert)
+	static std::ostream& operator<<(std::ostream& out, const Vertex& v)
 	{
-		out << "Vertex([" << vert.v.x << "," << vert.v.y << "," << vert.v.z
-			<< "],[" << vert.c.r << "," << vert.c.g << "," << vert.c.b << "])" << std::endl;
+		out << "Vertex([" << v.vert.x << "," << v.vert.y << "," << v.vert.z
+			<< "],[" << v.col.r << "," << v.col.g << "," << v.col.b << "])" << std::endl;
 		return out;
 	}
 

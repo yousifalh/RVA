@@ -5,11 +5,16 @@
 #include <GLFW/glfw3.h>
 
 #include "user/Controls.h"
+#include "user/Settings.h"
+
+
 
 namespace rva
 {
-	bool Window::s_instance;
+	Window* Window::s_instance{nullptr};
 	
+	WindowProperties defaultWindowProp{ 1200, 800, "RVA-ENGINE" };
+
 
 	void Window::initContext()
 	{
@@ -26,7 +31,21 @@ namespace rva
 		glfwTerminate();
 	}
 
+	unsigned int Window::getWindowHeight()
+	{
+		RVA_ASSERT(s_instance, "Window does not exist! Trying to access nullptr!");
+		return s_instance->getHeight();
+	}
+
+	unsigned int Window::getWindowWidth()
+	{
+		RVA_ASSERT(s_instance, "Window does not exist! Trying to access nullptr!");
+		return s_instance->getWidth();
+	}
+
+
 	Window::Window()
+		: m_height(defaultWindowProp.height), m_width(defaultWindowProp.width)
 	{
 		if (s_instance)
 		{
@@ -36,20 +55,34 @@ namespace rva
 		else
 		{
 			std::cout << "Creating window?" << std::endl;
-			s_instance = true;
-			m_glfwWindow = glfwCreateWindow(1200, 800, "RVA-ENGINE", NULL, NULL);
+			s_instance = this;
+			m_glfwWindow = glfwCreateWindow(
+				defaultWindowProp.width,
+				defaultWindowProp.height,
+				defaultWindowProp.name,
+				NULL,
+				NULL);
 
-			if (m_glfwWindow == NULL)
-			{
-				std::cout << "Failed to create window!" << std::endl;
-			}
+			RVA_ASSERT(m_glfwWindow, "Failed to create window!");
+			
+			camera = std::make_unique<Camera>();
 		}
 
 		glfwMakeContextCurrent(m_glfwWindow);
-		glfwSetFramebufferSizeCallback(m_glfwWindow, frameBufferSizeCallback);
+		glfwSetFramebufferSizeCallback(m_glfwWindow, framebuffer_size_callback);
+		glfwSetCursorPosCallback(m_glfwWindow, mouse_callback);
+		glfwSetScrollCallback(m_glfwWindow, scroll_callback);
+
+		glfwSetInputMode(m_glfwWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		
 
 		RVA_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Failed to load glad!")
 
+	}
+
+	Window::~Window()
+	{
+		s_instance = nullptr;
 	}
 
 	void Window::swapBuffers()
@@ -70,7 +103,48 @@ namespace rva
 	void Window::processPollEvents()
 	{
 		glfwPollEvents();
-		//Process poll
 	}
 
+	float previousTime{ 0.0f };
+	
+	void Window::processInput()
+	{
+		//Temporary -- trying to figure out event dispatcher...
+
+		double currentTime{ glfwGetTime() };
+		double deltaTime{ currentTime - previousTime };
+
+		if (glfwGetKey(m_glfwWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			setWindowShouldClose(true);
+
+		if (glfwGetKey(m_glfwWindow, GLFW_KEY_W) == GLFW_PRESS)
+			camera->processKeyboard(Camera::CameraMovement::FORWARD, deltaTime);
+
+		if (glfwGetKey(m_glfwWindow, GLFW_KEY_S) == GLFW_PRESS)
+			camera->processKeyboard(Camera::CameraMovement::BACKWARD, deltaTime);
+
+		if (glfwGetKey(m_glfwWindow, GLFW_KEY_A) == GLFW_PRESS)
+			camera->processKeyboard(Camera::CameraMovement::LEFT, deltaTime);
+
+		if (glfwGetKey(m_glfwWindow, GLFW_KEY_D) == GLFW_PRESS)
+			camera->processKeyboard(Camera::CameraMovement::RIGHT, deltaTime);
+
+		if (glfwGetKey(m_glfwWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			setWindowShouldClose(true);
+		
+		previousTime = currentTime;
+
+	}
+
+	unsigned int Window::getHeight()
+	{
+		return m_height;
+	}
+
+	unsigned int Window::getWidth()
+	{
+		return m_width;
+	}
 }
+
+

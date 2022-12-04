@@ -2,6 +2,8 @@
 
 #include "Window.h"
 #include "shader/Shader.h"
+#include "user/Camera.h"
+
 
 #include <memory>
 
@@ -12,7 +14,6 @@ namespace rva
 	private:
 		std::unique_ptr<Window> m_window;
 		std::unique_ptr<Shader> m_shader;
-
 
 		//WorldSpace is where all the links, meshes and 
 		//other similar data are done represented in the real world...

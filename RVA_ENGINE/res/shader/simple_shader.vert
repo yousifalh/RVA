@@ -5,9 +5,13 @@ layout (location = 1) in vec3 inCol;
 
 out vec3 aCol;
 
+uniform mat4 model = mat4(1.0f);
+uniform mat4 projection;
+uniform mat4 view;
+
 void main()
 {
-	gl_Position = vec4(inPos, 1.0f);
+	gl_Position = projection * view * model * vec4(inPos, 1.0f);
 	aCol = inCol;
 
 }

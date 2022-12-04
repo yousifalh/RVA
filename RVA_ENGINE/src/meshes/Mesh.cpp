@@ -3,7 +3,7 @@
 
 namespace rva
 {
-	Mesh::Mesh(float* verticiesIn, unsigned int num)
+	Mesh::Mesh(Vertex* verticiesIn, unsigned int num)
 		: m_verticiesPtr(verticiesIn), m_numVertices(num)
 	{
 	}
